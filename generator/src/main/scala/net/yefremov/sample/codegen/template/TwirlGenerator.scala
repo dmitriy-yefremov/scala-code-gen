@@ -9,7 +9,7 @@ import net.yefremov.sample.codegen.template.txt.CaseClass
  * See the Twirl source code at 'src/main/twirl/net.yefremov.sample.codegen.template/CaseClass.scala.txt'.
  * @author Dmitriy Yefremov
  */
-class TemplateGenerator extends Generator {
+class TwirlGenerator extends Generator {
 
   override def generate(schema: TypeSchema): String = CaseClass(schema).toString()
 

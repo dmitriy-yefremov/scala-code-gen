@@ -1,7 +1,7 @@
 package net.yefremov.sample.codegen
 
 import net.yefremov.sample.codegen.schema.{Field, TypeName, TypeSchema}
-import net.yefremov.sample.codegen.template.TemplateGenerator
+import net.yefremov.sample.codegen.template.TwirlGenerator
 import scalariform.formatter.ScalaFormatter
 
 object Main extends App {
@@ -20,7 +20,7 @@ object Main extends App {
     )
   )
 
-  val generator = new TemplateGenerator
+  val generator = new TwirlGenerator
   val content = generator.generate(schema)
 
   println(content)
