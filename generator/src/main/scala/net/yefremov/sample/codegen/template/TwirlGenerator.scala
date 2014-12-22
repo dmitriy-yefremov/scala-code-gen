@@ -1,7 +1,8 @@
 package net.yefremov.sample.codegen.template
 
 import net.yefremov.sample.codegen.Generator
-import net.yefremov.sample.codegen.schema.TypeSchema
+import net.yefremov.sample.codegen.schema.{FieldType, TypeSchema}
+import net.yefremov.sample.codegen.schema.FieldType.FieldType
 import net.yefremov.sample.codegen.template.txt.CaseClass
 
 import scalariform.formatter.ScalaFormatter
@@ -16,6 +17,21 @@ class TwirlGenerator extends Generator {
   override def generate(schema: TypeSchema): String = {
     val content = CaseClass(schema).toString()
     ScalaFormatter.format(content)
+  }
+
+}
+
+/**
+ * Helpers used by the Twirl template.
+ */
+object TwirlGenerator {
+
+  def toType(fieldType: FieldType): String = {
+    fieldType match {
+      case FieldType.String => "String"
+      case FieldType.Integer => "Int"
+      case FieldType.Boolean => "Boolean"
+    }
   }
 
 }

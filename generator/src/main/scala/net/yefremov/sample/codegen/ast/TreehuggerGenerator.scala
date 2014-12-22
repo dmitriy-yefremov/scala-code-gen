@@ -3,6 +3,7 @@ package net.yefremov.sample.codegen.ast
 import net.yefremov.sample.codegen.Generator
 import net.yefremov.sample.codegen.schema.{FieldType, TypeSchema}
 import net.yefremov.sample.codegen.schema.FieldType.FieldType
+
 import treehugger.forest._
 import treehuggerDSL._
 import definitions._
@@ -16,7 +17,7 @@ class TreehuggerGenerator extends Generator {
   private def toType(fieldType: FieldType): Type = {
     fieldType match {
       case FieldType.String => StringClass
-      case FieldType.Int => IntClass
+      case FieldType.Integer => IntClass
       case FieldType.Boolean => BooleanClass
     }
   }

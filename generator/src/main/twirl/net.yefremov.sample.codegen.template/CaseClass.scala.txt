@@ -1,9 +1,11 @@
 @(schema: net.yefremov.sample.codegen.schema.TypeSchema)
 
+@import _root_.net.yefremov.sample.codegen.template.TwirlGenerator
+
 package @schema.name.packageName
 
 case class @(schema.name.shortName) (
     @for((field, index) <- schema.fields.zipWithIndex) {
-        @field.name: @field.valueType.toString @if(index < schema.fields.size - 1) { , }
+        @field.name: @TwirlGenerator.toType(field.valueType) @if(index < schema.fields.size - 1) { , }
     }
 )
