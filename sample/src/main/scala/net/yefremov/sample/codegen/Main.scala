@@ -1,5 +1,6 @@
 package net.yefremov.sample.codegen
 
+import net.yefremov.sample.codegen.ast.TreehuggerGenerator
 import net.yefremov.sample.codegen.schema.{Field, TypeName, TypeSchema}
 import net.yefremov.sample.codegen.template.TwirlGenerator
 import scalariform.formatter.ScalaFormatter
@@ -25,5 +26,8 @@ object Main extends App {
 
   println(content)
   println(ScalaFormatter.format(content))
+
+  val astGenerator = new TreehuggerGenerator
+  println(astGenerator.generate(schema))
 
 }

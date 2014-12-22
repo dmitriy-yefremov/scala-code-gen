@@ -12,6 +12,11 @@ object Build extends Build {
 
   lazy val generator = project.in(file("generator"))
     .settings(Twirl.settings:_*)
+    .settings(
+      libraryDependencies ++=Seq(
+        "com.eed3si9n" %% "treehugger" % "0.3.0"
+      )
+    )
 
   lazy val sample = project.in(file("sample"))
     .dependsOn(generator)
