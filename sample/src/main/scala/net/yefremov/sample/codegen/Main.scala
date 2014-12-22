@@ -1,9 +1,8 @@
 package net.yefremov.sample.codegen
 
 import net.yefremov.sample.codegen.ast.TreehuggerGenerator
-import net.yefremov.sample.codegen.schema.{Field, TypeName, TypeSchema}
+import net.yefremov.sample.codegen.schema.{Field, FieldType, TypeName, TypeSchema}
 import net.yefremov.sample.codegen.template.TwirlGenerator
-import scalariform.formatter.ScalaFormatter
 
 object Main extends App {
 
@@ -12,20 +11,17 @@ object Main extends App {
     fields = Seq(
       Field(
         name = "bar",
-        valueType = classOf[String]
+        valueType = FieldType.String
       ),
       Field(
         name = "baz",
-        valueType = classOf[java.lang.Integer]
+        valueType = FieldType.Int
       )
     )
   )
 
-  val generator = new TwirlGenerator
-  val content = generator.generate(schema)
-
-  println(content)
-  println(ScalaFormatter.format(content))
+  val templateGenerator = new TwirlGenerator
+  println(templateGenerator.generate(schema))
 
   val astGenerator = new TreehuggerGenerator
   println(astGenerator.generate(schema))

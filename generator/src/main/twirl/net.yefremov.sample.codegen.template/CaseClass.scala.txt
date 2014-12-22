@@ -4,6 +4,6 @@ package @schema.name.packageName
 
 case class @(schema.name.shortName) (
     @for((field, index) <- schema.fields.zipWithIndex) {
-        @field.name: @field.valueType.getName @if(index < schema.fields.size - 1) { , }
+        @field.name: @field.valueType.toString @if(index < schema.fields.size - 1) { , }
     }
 )
