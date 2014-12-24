@@ -6,10 +6,10 @@ package net.yefremov.sample.codegen.schema
  */
 case class TypeName(fullName: String) {
 
-  val (packageName, shortName) = {
-    val lastDot = fullName.lastIndexOf('.')
-    require(lastDot > 0, "not a valid name")
-    (fullName.take(lastDot), fullName.drop(lastDot + 1))
-  }
+  private def lastDot = fullName.lastIndexOf('.')
+
+  def packageName: String = fullName.take(lastDot)
+
+  def shortName: String = fullName.drop(lastDot + 1)
 
 }
