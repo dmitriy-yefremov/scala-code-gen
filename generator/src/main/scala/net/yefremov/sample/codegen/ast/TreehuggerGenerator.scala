@@ -14,14 +14,6 @@ import definitions._
  */
 class TreehuggerGenerator extends Generator {
 
-  private def toType(fieldType: FieldType): Type = {
-    fieldType match {
-      case FieldType.String => StringClass
-      case FieldType.Integer => IntClass
-      case FieldType.Boolean => BooleanClass
-    }
-  }
-
   override def generate(schema: TypeSchema): String = {
     val classSymbol = RootClass.newClass(schema.name.shortName)
     val params = schema.fields.map(field => PARAM(field.name, toType(field.valueType)): ValDef)
@@ -33,4 +25,13 @@ class TreehuggerGenerator extends Generator {
 
     treeToString(tree)
   }
+
+  private def toType(fieldType: FieldType): Type = {
+    fieldType match {
+      case FieldType.String => StringClass
+      case FieldType.Integer => IntClass
+      case FieldType.Boolean => BooleanClass
+    }
+  }
+
 }
