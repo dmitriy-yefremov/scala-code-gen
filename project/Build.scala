@@ -14,7 +14,6 @@ object Build extends Build {
     .settings(Twirl.settings:_*)
     .settings(
       libraryDependencies ++=Seq(
-        "org.scalariform" %% "scalariform" % "0.1.4",
         "com.eed3si9n" %% "treehugger" % "0.3.0"
       )
     )
