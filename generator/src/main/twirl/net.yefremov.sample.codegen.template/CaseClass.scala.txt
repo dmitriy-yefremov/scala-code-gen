@@ -4,8 +4,15 @@
 
 package @schema.name.packageName
 
+/**
+ * @schema.comment
+ */
 case class @(schema.name.shortName) (
     @for((field, index) <- schema.fields.zipWithIndex) {
         @field.name: @TwirlGenerator.toType(field.valueType) @if(index < schema.fields.size - 1) { , }
     }
-)
+) {
+
+  def schema: String = "@schema.toString"
+
+}

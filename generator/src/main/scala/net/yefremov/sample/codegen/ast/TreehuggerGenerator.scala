@@ -26,8 +26,10 @@ class TreehuggerGenerator extends Generator {
     val classSymbol = RootClass.newClass(schema.name.shortName)
     val params = schema.fields.map(field => PARAM(field.name, toType(field.valueType)): ValDef)
     val tree = BLOCK(
-      CASECLASSDEF(classSymbol).withParams(params)
-    ).inPackage(schema.name.packageName)
+      CASECLASSDEF(classSymbol).withParams(params).tree.withDoc(schema.comment):= BLOCK(
+        DEF("schema", StringClass) := LIT(schema.toString)
+      )
+      ).inPackage(schema.name.packageName)
 
     treeToString(tree)
   }

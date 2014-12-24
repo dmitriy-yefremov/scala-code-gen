@@ -17,6 +17,7 @@ object Main extends App {
 
   val schema = TypeSchema(
     name = TypeName("net.yefremov.sample.codegen.Foo"),
+    comment = "Test schema to play with the generators",
     fields = Seq(
       Field(
         name = "bar",
