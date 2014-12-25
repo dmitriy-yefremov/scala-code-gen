@@ -1,6 +1,6 @@
 package net.yefremov.sample.codegen.schema
 
-import java.io.{FileInputStream, File}
+import java.io.FileInputStream
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
@@ -20,10 +20,7 @@ object TypeSchema {
    * Loads a schema from a JSON file.
    */
   def fromJson(fileName: String): TypeSchema = {
-    // TODO take care of the hardcoded path
-    val file = new File("sample/src/main/resources", fileName)
-    require(file.isFile, file.getAbsoluteFile)
-    val inputStream = new FileInputStream(file)
+    val inputStream = new FileInputStream(fileName)
     try {
       mapper.readValue(inputStream, classOf[TypeSchema])
     } finally {

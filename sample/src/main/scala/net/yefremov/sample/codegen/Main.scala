@@ -7,10 +7,10 @@ import net.yefremov.sample.codegen.template.TwirlGenerator
 
 object Main extends App {
 
-  val schema = TypeSchema.fromJson("Foo.json")
+  val schema = TypeSchema.fromJson("sample/src/main/resources/Foo.json")
 
   println((new TwirlGenerator).generate(schema))
   println((new TreehuggerGenerator).generate(schema))
 
-  @FromSchema class Foo
+  @FromSchema("sample/src/main/resources/Foo.json") class Foo
 }

@@ -16,28 +16,29 @@ object QuasiquotesGenerator {
 
     import c.universe._
 
+    val schemaPath = c.prefix.tree match {
+      case Apply(_, List(Literal(Constant(x)))) => x.toString
+      case _ => c.abort(c.enclosingPosition, "schema file path is not specified")
+    }
+
+    val schema = TypeSchema.fromJson(schemaPath)
+
     annottees.map(_.tree) match {
-      case List(q"class $name") =>
+      case List(q"class $name") => c.Expr[Any](
+        q"""
+          case class $name() {
 
-        // get schema file name from the type name
-        val schemaName = name.toString + ".json"
-        val schema = TypeSchema.fromJson(schemaName)
+            def schema = ${schema.toString}
 
-        c.Expr[Any](
-          q"""
-            case class $name() {
-
-              def schema = ${schema.toString}
-
-            }
-          """
-        )
+          }
+        """
+      )
     }
   }
 
 }
 
-class FromSchema extends StaticAnnotation {
+class FromSchema(schemaFile: String) extends StaticAnnotation {
 
   def macroTransform(annottees: Any*) = macro QuasiquotesGenerator.generate
 
