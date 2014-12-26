@@ -14,14 +14,24 @@ import definitions._
 class TreehuggerGenerator {
 
   def generate(schema: TypeSchema): String = {
+    // register new type
     val classSymbol = RootClass.newClass(schema.name.shortName)
-    val params = schema.fields.map(field => PARAM(field.name, toType(field.valueType)): ValDef)
+
+    // generate list of constructor parameters
+    val params = schema.fields.map { field =>
+      val fieldName = field.name
+      val fieldType = toType(field.valueType)
+      PARAM(fieldName, fieldType): ValDef
+    }
+
+    // generate class definition
     val tree = BLOCK(
       CASECLASSDEF(classSymbol).withParams(params).tree.withDoc(schema.comment):= BLOCK(
         DEF("schema", StringClass) := LIT(schema.toString)
       )
       ).inPackage(schema.name.packageName)
 
+    // pretty print the tree
     treeToString(tree)
   }
 
