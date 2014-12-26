@@ -18,18 +18,11 @@ object QuasiquotesGenerator {
 
     import c.universe._
 
+    // retrieve the schema file path from the code tree
     def getSchemaPath: String = {
       c.prefix.tree match {
         case Apply(_, List(Literal(Constant(x)))) => x.toString
         case _ => c.abort(c.enclosingPosition, "schema file path is not specified")
-      }
-    }
-
-    def toType(fieldType: FieldType) = {
-      fieldType match {
-        case FieldType.String => "String"
-        case FieldType.Integer => "Int"
-        case FieldType.Boolean => "Boolean"
       }
     }
 
@@ -40,7 +33,7 @@ object QuasiquotesGenerator {
 
         val params = schema.fields.map { field =>
           val fieldName = newTermName(field.name)
-          val fieldType = newTypeName(toType(field.valueType))
+          val fieldType = newTypeName(field.valueType.toString)
           q"val $fieldName: $fieldType"
         }
 

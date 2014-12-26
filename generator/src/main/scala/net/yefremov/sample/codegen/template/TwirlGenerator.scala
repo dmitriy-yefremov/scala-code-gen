@@ -1,7 +1,6 @@
 package net.yefremov.sample.codegen.template
 
-import net.yefremov.sample.codegen.schema.{FieldType, TypeSchema}
-import net.yefremov.sample.codegen.schema.FieldType.FieldType
+import net.yefremov.sample.codegen.schema.TypeSchema
 import net.yefremov.sample.codegen.template.txt.CaseClass
 
 /**
@@ -11,23 +10,6 @@ import net.yefremov.sample.codegen.template.txt.CaseClass
  */
 class TwirlGenerator {
 
-  def generate(schema: TypeSchema): String = {
-    CaseClass(schema).toString()
-  }
-
-}
-
-/**
- * Helpers used by the Twirl template.
- */
-object TwirlGenerator {
-
-  def toType(fieldType: FieldType): String = {
-    fieldType match {
-      case FieldType.String => "String"
-      case FieldType.Integer => "Int"
-      case FieldType.Boolean => "Boolean"
-    }
-  }
+  def generate(schema: TypeSchema): String = CaseClass(schema).toString()
 
 }

@@ -15,7 +15,7 @@
       "name": "baz",
       "valueType": {
         "enumClass": "net.yefremov.sample.codegen.schema.FieldType",
-        "value": "Integer"
+        "value": "Int"
       }
     }
   ]

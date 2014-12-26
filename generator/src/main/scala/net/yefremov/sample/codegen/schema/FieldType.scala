@@ -8,6 +8,6 @@ object FieldType extends Enumeration {
 
   type FieldType = Value
 
-  val String, Integer, Boolean = Value
+  val String, Int, Boolean = Value
 
 }

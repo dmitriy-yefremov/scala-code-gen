@@ -28,7 +28,7 @@ class TreehuggerGenerator {
   private def toType(fieldType: FieldType): Type = {
     fieldType match {
       case FieldType.String => StringClass
-      case FieldType.Integer => IntClass
+      case FieldType.Int => IntClass
       case FieldType.Boolean => BooleanClass
     }
   }
