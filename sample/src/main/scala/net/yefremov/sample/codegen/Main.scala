@@ -15,6 +15,6 @@ object Main extends App {
 
   println((new TreehuggerGenerator).generate(schema))
 
-  val f = new Foo("1", 2)
-  println(f.schema)
+  val f = Foo("1", 2)
+  println(f)
 }

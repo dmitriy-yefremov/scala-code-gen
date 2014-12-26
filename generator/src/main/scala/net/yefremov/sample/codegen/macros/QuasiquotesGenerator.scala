@@ -27,9 +27,9 @@ object QuasiquotesGenerator {
 
     def toType(fieldType: FieldType) = {
       fieldType match {
-        case FieldType.String => typeOf[String]
-        case FieldType.Integer => typeOf[Int]
-        case FieldType.Boolean => typeOf[Boolean]
+        case FieldType.String => "String"
+        case FieldType.Integer => "Int"
+        case FieldType.Boolean => "Boolean"
       }
     }
 
@@ -39,14 +39,14 @@ object QuasiquotesGenerator {
         val schema = TypeSchema.fromJson(getSchemaPath)
 
         val params = schema.fields.map { field =>
-          val fieldType = toType(field.valueType)
           val fieldName = newTermName(field.name)
+          val fieldType = newTypeName(toType(field.valueType))
           q"val $fieldName: $fieldType"
         }
 
         c.Expr[Any](
           q"""
-            class $name(..$params) {
+            case class $name(..$params) {
 
               def schema = ${schema.toString}
 
