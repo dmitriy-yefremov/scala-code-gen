@@ -34,7 +34,7 @@ object QuasiquotesGenerator {
     // produce the list of constructor parameters (note the "val ..." syntax)
     val params = schema.fields.map { field =>
       val fieldName = newTermName(field.name)
-      val fieldType = newTypeName(field.valueType.toString)
+      val fieldType = newTypeName(field.valueType.fullName)
       q"val $fieldName: $fieldType"
     }
 

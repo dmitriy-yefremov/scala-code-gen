@@ -1,7 +1,6 @@
 package net.yefremov.sample.codegen.ast
 
-import net.yefremov.sample.codegen.schema.{FieldType, TypeSchema}
-import net.yefremov.sample.codegen.schema.FieldType.FieldType
+import net.yefremov.sample.codegen.schema.{TypeSchema, TypeName}
 
 import treehugger.forest._
 import treehuggerDSL._
@@ -35,11 +34,11 @@ class TreehuggerGenerator {
     treeToString(tree)
   }
 
-  private def toType(fieldType: FieldType): Type = {
-    fieldType match {
-      case FieldType.String => StringClass
-      case FieldType.Int => IntClass
-      case FieldType.Boolean => BooleanClass
+  private def toType(fieldType: TypeName): Type = {
+    fieldType.fullName match {
+      case "String" => StringClass
+      case "Int" => IntClass
+      case "Boolean" => BooleanClass
     }
   }
 

@@ -7,15 +7,13 @@
     {
       "name": "bar",
       "valueType": {
-        "enumClass": "net.yefremov.sample.codegen.schema.FieldType",
-        "value": "String"
+        "fullName": "String"
       }
     },
     {
       "name": "baz",
       "valueType": {
-        "enumClass": "net.yefremov.sample.codegen.schema.FieldType",
-        "value": "Int"
+        "fullName": "Int"
       }
     }
   ]
