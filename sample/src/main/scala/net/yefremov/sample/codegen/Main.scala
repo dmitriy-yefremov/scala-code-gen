@@ -17,4 +17,5 @@ object Main extends App {
 
   val f = Foo("1", 2)
   println(f)
+  println(f.schema)
 }

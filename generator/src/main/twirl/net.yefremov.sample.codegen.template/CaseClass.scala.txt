@@ -1,6 +1,7 @@
 @(schema: net.yefremov.sample.codegen.schema.TypeSchema)
 
 @import _root_.net.yefremov.sample.codegen.template.TwirlGenerator
+@import _root_.net.yefremov.sample.codegen.schema.TypeSchema
 
 package @schema.name.packageName
 
@@ -13,6 +14,6 @@ case class @(schema.name.shortName) (
     }
 ) {
 
-  def schema: String = "@schema.toString"
+  def schema: String = "@TypeSchema.toEscapedJson(schema)"
 
 }

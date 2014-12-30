@@ -38,12 +38,14 @@ object QuasiquotesGenerator {
       q"val $fieldName: $fieldType"
     }
 
+    val json = TypeSchema.toJson(schema)
+
     // rewrite the class definition
     c.Expr(
       q"""
         case class $className(..$params) {
 
-          def schema = ${schema.toString}
+          def schema = ${json}
 
         }
       """

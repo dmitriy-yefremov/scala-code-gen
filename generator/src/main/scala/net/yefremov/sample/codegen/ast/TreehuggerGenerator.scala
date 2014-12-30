@@ -26,7 +26,7 @@ class TreehuggerGenerator {
     // generate class definition
     val tree = BLOCK(
       CASECLASSDEF(classSymbol).withParams(params).tree.withDoc(schema.comment):= BLOCK(
-        DEF("schema", StringClass) := LIT(schema.toString)
+        DEF("schema", StringClass) := LIT(TypeSchema.toJson(schema))
       )
       ).inPackage(schema.name.packageName)
 
